@@ -5,10 +5,14 @@
   "description": "JSON Schema for validating JSContact data (RFC 9553)",
   "type": "object",
   "oneOf": [
-    { "$ref": "#/$defs/Card" },
+    {
+      "$ref": "#/$defs/Card"
+    },
     {
       "type": "array",
-      "items": { "$ref": "#/$defs/Card" }
+      "items": {
+        "$ref": "#/$defs/Card"
+      }
     }
   ],
   "$defs": {
@@ -31,7 +35,14 @@
         },
         "kind": {
           "type": "string",
-          "enum": ["individual", "group", "org", "location", "device", "application"],
+          "enum": [
+            "individual",
+            "group",
+            "org",
+            "location",
+            "device",
+            "application"
+          ],
           "default": "individual",
           "description": "The kind of the entity the Card represents"
         },
@@ -59,7 +70,9 @@
         "relatedTo": {
           "type": "object",
           "patternProperties": {
-            ".*": { "$ref": "#/$defs/Relation" }
+            ".*": {
+              "$ref": "#/$defs/Relation"
+            }
           },
           "additionalProperties": false,
           "description": "The set of Card objects that relate to the Card"
@@ -72,7 +85,9 @@
           "$ref": "#/$defs/IdMap",
           "properties": {
             "patternProperties": {
-              ".*": { "$ref": "#/$defs/Nickname" }
+              ".*": {
+                "$ref": "#/$defs/Nickname"
+              }
             }
           },
           "description": "The nicknames of the entity represented by the Card"
@@ -81,7 +96,9 @@
           "$ref": "#/$defs/IdMap",
           "properties": {
             "patternProperties": {
-              ".*": { "$ref": "#/$defs/Organization" }
+              ".*": {
+                "$ref": "#/$defs/Organization"
+              }
             }
           },
           "description": "The company or organization names and units associated with the Card"
@@ -94,7 +111,9 @@
           "$ref": "#/$defs/IdMap",
           "properties": {
             "patternProperties": {
-              ".*": { "$ref": "#/$defs/Title" }
+              ".*": {
+                "$ref": "#/$defs/Title"
+              }
             }
           },
           "description": "The job titles or functional positions of the entity represented by the Card"
@@ -103,7 +122,9 @@
           "$ref": "#/$defs/IdMap",
           "properties": {
             "patternProperties": {
-              ".*": { "$ref": "#/$defs/EmailAddress" }
+              ".*": {
+                "$ref": "#/$defs/EmailAddress"
+              }
             }
           },
           "description": "The email addresses to contact the entity represented by the Card"
@@ -112,7 +133,9 @@
           "$ref": "#/$defs/IdMap",
           "properties": {
             "patternProperties": {
-              ".*": { "$ref": "#/$defs/OnlineService" }
+              ".*": {
+                "$ref": "#/$defs/OnlineService"
+              }
             }
           },
           "description": "The online services that are associated with the entity represented by the Card"
@@ -121,7 +144,9 @@
           "$ref": "#/$defs/IdMap",
           "properties": {
             "patternProperties": {
-              ".*": { "$ref": "#/$defs/Phone" }
+              ".*": {
+                "$ref": "#/$defs/Phone"
+              }
             }
           },
           "description": "The phone numbers by which to contact the entity represented by the Card"
@@ -130,7 +155,9 @@
           "$ref": "#/$defs/IdMap",
           "properties": {
             "patternProperties": {
-              ".*": { "$ref": "#/$defs/LanguagePref" }
+              ".*": {
+                "$ref": "#/$defs/LanguagePref"
+              }
             }
           },
           "description": "The preferred languages for contacting the entity associated with the Card"
@@ -139,7 +166,9 @@
           "$ref": "#/$defs/IdMap",
           "properties": {
             "patternProperties": {
-              ".*": { "$ref": "#/$defs/Calendar" }
+              ".*": {
+                "$ref": "#/$defs/Calendar"
+              }
             }
           },
           "description": "The calendaring resources of the entity represented by the Card"
@@ -148,7 +177,9 @@
           "$ref": "#/$defs/IdMap",
           "properties": {
             "patternProperties": {
-              ".*": { "$ref": "#/$defs/SchedulingAddress" }
+              ".*": {
+                "$ref": "#/$defs/SchedulingAddress"
+              }
             }
           },
           "description": "The scheduling addresses by which the entity may receive calendar scheduling invitations"
@@ -157,7 +188,9 @@
           "$ref": "#/$defs/IdMap",
           "properties": {
             "patternProperties": {
-              ".*": { "$ref": "#/$defs/Address" }
+              ".*": {
+                "$ref": "#/$defs/Address"
+              }
             }
           },
           "description": "The addresses of the entity represented by the Card"
@@ -166,7 +199,9 @@
           "$ref": "#/$defs/IdMap",
           "properties": {
             "patternProperties": {
-              ".*": { "$ref": "#/$defs/CryptoKey" }
+              ".*": {
+                "$ref": "#/$defs/CryptoKey"
+              }
             }
           },
           "description": "The cryptographic resources such as public keys and certificates"
@@ -175,7 +210,9 @@
           "$ref": "#/$defs/IdMap",
           "properties": {
             "patternProperties": {
-              ".*": { "$ref": "#/$defs/Directory" }
+              ".*": {
+                "$ref": "#/$defs/Directory"
+              }
             }
           },
           "description": "The directories containing information about the entity represented by the Card"
@@ -184,7 +221,9 @@
           "$ref": "#/$defs/IdMap",
           "properties": {
             "patternProperties": {
-              ".*": { "$ref": "#/$defs/Link" }
+              ".*": {
+                "$ref": "#/$defs/Link"
+              }
             }
           },
           "description": "The links to resources that do not fit any of the other use-case-specific resource properties"
@@ -193,7 +232,9 @@
           "$ref": "#/$defs/IdMap",
           "properties": {
             "patternProperties": {
-              ".*": { "$ref": "#/$defs/Media" }
+              ".*": {
+                "$ref": "#/$defs/Media"
+              }
             }
           },
           "description": "The media resources such as photographs, avatars, or sounds"
@@ -201,7 +242,9 @@
         "localizations": {
           "type": "object",
           "patternProperties": {
-            ".*": { "$ref": "#/$defs/PatchObject" }
+            ".*": {
+              "$ref": "#/$defs/PatchObject"
+            }
           },
           "additionalProperties": false,
           "description": "Property values localized to languages other than the main language of the Card"
@@ -210,7 +253,9 @@
           "$ref": "#/$defs/IdMap",
           "properties": {
             "patternProperties": {
-              ".*": { "$ref": "#/$defs/Anniversary" }
+              ".*": {
+                "$ref": "#/$defs/Anniversary"
+              }
             }
           },
           "description": "The memorable dates and events for the entity represented by the Card"
@@ -223,7 +268,9 @@
           "$ref": "#/$defs/IdMap",
           "properties": {
             "patternProperties": {
-              ".*": { "$ref": "#/$defs/Note" }
+              ".*": {
+                "$ref": "#/$defs/Note"
+              }
             }
           },
           "description": "The free-text notes that are associated with the Card"
@@ -232,13 +279,19 @@
           "$ref": "#/$defs/IdMap",
           "properties": {
             "patternProperties": {
-              ".*": { "$ref": "#/$defs/PersonalInfo" }
+              ".*": {
+                "$ref": "#/$defs/PersonalInfo"
+              }
             }
           },
           "description": "The personal information of the entity represented by the Card"
         }
       },
-      "required": ["@type", "version", "uid"],
+      "required": [
+        "@type",
+        "version",
+        "uid"
+      ],
       "patternProperties": {
         "^[a-zA-Z0-9_-]+\\.[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)*:": true
       },
@@ -253,7 +306,9 @@
         },
         "components": {
           "type": "array",
-          "items": { "$ref": "#/$defs/NameComponent" },
+          "items": {
+            "$ref": "#/$defs/NameComponent"
+          },
           "description": "The components making up this name"
         },
         "isOrdered": {
@@ -285,13 +340,25 @@
         },
         "phoneticSystem": {
           "type": "string",
-          "enum": ["ipa", "jyut", "piny"],
+          "enum": [
+            "ipa",
+            "jyut",
+            "piny"
+          ],
           "description": "The phonetic system used in the NameComponent phonetic property"
         }
       },
       "anyOf": [
-        { "required": ["components"] },
-        { "required": ["full"] }
+        {
+          "required": [
+            "components"
+          ]
+        },
+        {
+          "required": [
+            "full"
+          ]
+        }
       ],
       "additionalProperties": false
     },
@@ -308,7 +375,16 @@
         },
         "kind": {
           "type": "string",
-          "enum": ["title", "given", "given2", "surname", "surname2", "credential", "generation", "separator"],
+          "enum": [
+            "title",
+            "given",
+            "given2",
+            "surname",
+            "surname2",
+            "credential",
+            "generation",
+            "separator"
+          ],
           "description": "The kind of the name component"
         },
         "phonetic": {
@@ -316,7 +392,10 @@
           "description": "The pronunciation of the name component"
         }
       },
-      "required": ["value", "kind"],
+      "required": [
+        "value",
+        "kind"
+      ],
       "additionalProperties": false
     },
     "Nickname": {
@@ -330,10 +409,16 @@
           "type": "string",
           "description": "The nickname"
         },
-        "contexts": { "$ref": "#/$defs/Contexts" },
-        "pref": { "$ref": "#/$defs/Pref" }
+        "contexts": {
+          "$ref": "#/$defs/Contexts"
+        },
+        "pref": {
+          "$ref": "#/$defs/Pref"
+        }
       },
-      "required": ["name"],
+      "required": [
+        "name"
+      ],
       "additionalProperties": false
     },
     "Organization": {
@@ -349,7 +434,9 @@
         },
         "units": {
           "type": "array",
-          "items": { "$ref": "#/$defs/OrgUnit" },
+          "items": {
+            "$ref": "#/$defs/OrgUnit"
+          },
           "minItems": 1,
           "description": "A list of organizational units, ordered as descending by hierarchy"
         },
@@ -357,11 +444,21 @@
           "type": "string",
           "description": "The value to lexicographically sort the organization"
         },
-        "contexts": { "$ref": "#/$defs/Contexts" }
+        "contexts": {
+          "$ref": "#/$defs/Contexts"
+        }
       },
       "anyOf": [
-        { "required": ["name"] },
-        { "required": ["units"] }
+        {
+          "required": [
+            "name"
+          ]
+        },
+        {
+          "required": [
+            "units"
+          ]
+        }
       ],
       "additionalProperties": false
     },
@@ -381,7 +478,9 @@
           "description": "The value to lexicographically sort the organizational unit"
         }
       },
-      "required": ["name"],
+      "required": [
+        "name"
+      ],
       "additionalProperties": false
     },
     "SpeakToAs": {
@@ -393,22 +492,39 @@
         },
         "grammaticalGender": {
           "type": "string",
-          "enum": ["animate", "common", "feminine", "inanimate", "masculine", "neuter"],
+          "enum": [
+            "animate",
+            "common",
+            "feminine",
+            "inanimate",
+            "masculine",
+            "neuter"
+          ],
           "description": "The grammatical gender to use in salutations and other grammatical constructs"
         },
         "pronouns": {
           "$ref": "#/$defs/IdMap",
           "properties": {
             "patternProperties": {
-              ".*": { "$ref": "#/$defs/Pronouns" }
+              ".*": {
+                "$ref": "#/$defs/Pronouns"
+              }
             }
           },
           "description": "The pronouns that the contact chooses to use for themselves"
         }
       },
       "anyOf": [
-        { "required": ["grammaticalGender"] },
-        { "required": ["pronouns"] }
+        {
+          "required": [
+            "grammaticalGender"
+          ]
+        },
+        {
+          "required": [
+            "pronouns"
+          ]
+        }
       ],
       "additionalProperties": false
     },
@@ -423,10 +539,16 @@
           "type": "string",
           "description": "The pronouns"
         },
-        "contexts": { "$ref": "#/$defs/Contexts" },
-        "pref": { "$ref": "#/$defs/Pref" }
+        "contexts": {
+          "$ref": "#/$defs/Contexts"
+        },
+        "pref": {
+          "$ref": "#/$defs/Pref"
+        }
       },
-      "required": ["pronouns"],
+      "required": [
+        "pronouns"
+      ],
       "additionalProperties": false
     },
     "Title": {
@@ -442,7 +564,10 @@
         },
         "kind": {
           "type": "string",
-          "enum": ["title", "role"],
+          "enum": [
+            "title",
+            "role"
+          ],
           "default": "title",
           "description": "The organizational or situational kind of the title"
         },
@@ -451,7 +576,9 @@
           "description": "The identifier of the organization in which this title is held"
         }
       },
-      "required": ["name"],
+      "required": [
+        "name"
+      ],
       "additionalProperties": false
     },
     "EmailAddress": {
@@ -466,11 +593,19 @@
           "format": "email",
           "description": "The email address"
         },
-        "contexts": { "$ref": "#/$defs/Contexts" },
-        "pref": { "$ref": "#/$defs/Pref" },
-        "label": { "$ref": "#/$defs/Label" }
+        "contexts": {
+          "$ref": "#/$defs/Contexts"
+        },
+        "pref": {
+          "$ref": "#/$defs/Pref"
+        },
+        "label": {
+          "$ref": "#/$defs/Label"
+        }
       },
-      "required": ["address"],
+      "required": [
+        "address"
+      ],
       "additionalProperties": false
     },
     "OnlineService": {
@@ -493,13 +628,27 @@
           "type": "string",
           "description": "The name the entity represented by the Card at the online service"
         },
-        "contexts": { "$ref": "#/$defs/Contexts" },
-        "pref": { "$ref": "#/$defs/Pref" },
-        "label": { "$ref": "#/$defs/Label" }
+        "contexts": {
+          "$ref": "#/$defs/Contexts"
+        },
+        "pref": {
+          "$ref": "#/$defs/Pref"
+        },
+        "label": {
+          "$ref": "#/$defs/Label"
+        }
       },
       "anyOf": [
-        { "required": ["uri"] },
-        { "required": ["user"] }
+        {
+          "required": [
+            "uri"
+          ]
+        },
+        {
+          "required": [
+            "user"
+          ]
+        }
       ],
       "additionalProperties": false
     },
@@ -517,23 +666,55 @@
         "features": {
           "type": "object",
           "properties": {
-            "mobile": { "type": "boolean", "const": true },
-            "voice": { "type": "boolean", "const": true },
-            "text": { "type": "boolean", "const": true },
-            "video": { "type": "boolean", "const": true },
-            "main-number": { "type": "boolean", "const": true },
-            "textphone": { "type": "boolean", "const": true },
-            "fax": { "type": "boolean", "const": true },
-            "pager": { "type": "boolean", "const": true }
+            "mobile": {
+              "type": "boolean",
+              "const": true
+            },
+            "voice": {
+              "type": "boolean",
+              "const": true
+            },
+            "text": {
+              "type": "boolean",
+              "const": true
+            },
+            "video": {
+              "type": "boolean",
+              "const": true
+            },
+            "main-number": {
+              "type": "boolean",
+              "const": true
+            },
+            "textphone": {
+              "type": "boolean",
+              "const": true
+            },
+            "fax": {
+              "type": "boolean",
+              "const": true
+            },
+            "pager": {
+              "type": "boolean",
+              "const": true
+            }
           },
           "additionalProperties": false,
           "description": "The set of contact features that the phone number may be used for"
         },
-        "contexts": { "$ref": "#/$defs/Contexts" },
-        "pref": { "$ref": "#/$defs/Pref" },
-        "label": { "$ref": "#/$defs/Label" }
+        "contexts": {
+          "$ref": "#/$defs/Contexts"
+        },
+        "pref": {
+          "$ref": "#/$defs/Pref"
+        },
+        "label": {
+          "$ref": "#/$defs/Label"
+        }
       },
-      "required": ["number"],
+      "required": [
+        "number"
+      ],
       "additionalProperties": false
     },
     "LanguagePref": {
@@ -547,16 +728,24 @@
           "type": "string",
           "description": "The preferred language as a language tag"
         },
-        "contexts": { "$ref": "#/$defs/Contexts" },
-        "pref": { "$ref": "#/$defs/Pref" }
+        "contexts": {
+          "$ref": "#/$defs/Contexts"
+        },
+        "pref": {
+          "$ref": "#/$defs/Pref"
+        }
       },
-      "required": ["language"],
+      "required": [
+        "language"
+      ],
       "additionalProperties": false
     },
     "Calendar": {
       "type": "object",
       "allOf": [
-        { "$ref": "#/$defs/Resource" },
+        {
+          "$ref": "#/$defs/Resource"
+        },
         {
           "properties": {
             "@type": {
@@ -565,11 +754,16 @@
             },
             "kind": {
               "type": "string",
-              "enum": ["calendar", "freeBusy"],
+              "enum": [
+                "calendar",
+                "freeBusy"
+              ],
               "description": "The kind of calendar resource"
             }
           },
-          "required": ["kind"]
+          "required": [
+            "kind"
+          ]
         }
       ]
     },
@@ -585,11 +779,19 @@
           "format": "uri",
           "description": "The address to use for calendar scheduling with the contact"
         },
-        "contexts": { "$ref": "#/$defs/Contexts" },
-        "pref": { "$ref": "#/$defs/Pref" },
-        "label": { "$ref": "#/$defs/Label" }
+        "contexts": {
+          "$ref": "#/$defs/Contexts"
+        },
+        "pref": {
+          "$ref": "#/$defs/Pref"
+        },
+        "label": {
+          "$ref": "#/$defs/Label"
+        }
       },
-      "required": ["uri"],
+      "required": [
+        "uri"
+      ],
       "additionalProperties": false
     },
     "Address": {
@@ -601,7 +803,9 @@
         },
         "components": {
           "type": "array",
-          "items": { "$ref": "#/$defs/AddressComponent" },
+          "items": {
+            "$ref": "#/$defs/AddressComponent"
+          },
           "description": "The components that make up the address"
         },
         "isOrdered": {
@@ -626,10 +830,22 @@
         "contexts": {
           "type": "object",
           "properties": {
-            "private": { "type": "boolean", "const": true },
-            "work": { "type": "boolean", "const": true },
-            "billing": { "type": "boolean", "const": true },
-            "delivery": { "type": "boolean", "const": true }
+            "private": {
+              "type": "boolean",
+              "const": true
+            },
+            "work": {
+              "type": "boolean",
+              "const": true
+            },
+            "billing": {
+              "type": "boolean",
+              "const": true
+            },
+            "delivery": {
+              "type": "boolean",
+              "const": true
+            }
           },
           "additionalProperties": false,
           "description": "The contexts in which to use this address"
@@ -642,23 +858,49 @@
           "type": "string",
           "description": "The default separator to insert between address component values"
         },
-        "pref": { "$ref": "#/$defs/Pref" },
+        "pref": {
+          "$ref": "#/$defs/Pref"
+        },
         "phoneticScript": {
           "type": "string",
           "description": "The script used in the value of the AddressComponent phonetic property"
         },
         "phoneticSystem": {
           "type": "string",
-          "enum": ["ipa", "jyut", "piny"],
+          "enum": [
+            "ipa",
+            "jyut",
+            "piny"
+          ],
           "description": "The phonetic system used in the AddressComponent phonetic property"
         }
       },
       "anyOf": [
-        { "required": ["components"] },
-        { "required": ["coordinates"] },
-        { "required": ["countryCode"] },
-        { "required": ["full"] },
-        { "required": ["timeZone"] }
+        {
+          "required": [
+            "components"
+          ]
+        },
+        {
+          "required": [
+            "coordinates"
+          ]
+        },
+        {
+          "required": [
+            "countryCode"
+          ]
+        },
+        {
+          "required": [
+            "full"
+          ]
+        },
+        {
+          "required": [
+            "timeZone"
+          ]
+        }
       ],
       "additionalProperties": false
     },
@@ -676,9 +918,23 @@
         "kind": {
           "type": "string",
           "enum": [
-            "room", "apartment", "floor", "building", "number", "name", "block",
-            "subdistrict", "district", "locality", "region", "postcode", "country",
-            "direction", "landmark", "postOfficeBox", "separator"
+            "room",
+            "apartment",
+            "floor",
+            "building",
+            "number",
+            "name",
+            "block",
+            "subdistrict",
+            "district",
+            "locality",
+            "region",
+            "postcode",
+            "country",
+            "direction",
+            "landmark",
+            "postOfficeBox",
+            "separator"
           ],
           "description": "The kind of the address component"
         },
@@ -687,13 +943,18 @@
           "description": "The pronunciation of the address component"
         }
       },
-      "required": ["value", "kind"],
+      "required": [
+        "value",
+        "kind"
+      ],
       "additionalProperties": false
     },
     "CryptoKey": {
       "type": "object",
       "allOf": [
-        { "$ref": "#/$defs/Resource" },
+        {
+          "$ref": "#/$defs/Resource"
+        },
         {
           "properties": {
             "@type": {
@@ -707,7 +968,9 @@
     "Directory": {
       "type": "object",
       "allOf": [
-        { "$ref": "#/$defs/Resource" },
+        {
+          "$ref": "#/$defs/Resource"
+        },
         {
           "properties": {
             "@type": {
@@ -716,7 +979,10 @@
             },
             "kind": {
               "type": "string",
-              "enum": ["directory", "entry"],
+              "enum": [
+                "directory",
+                "entry"
+              ],
               "description": "The kind of directory resource"
             },
             "listAs": {
@@ -725,14 +991,18 @@
               "description": "The position of the directory resource in the list"
             }
           },
-          "required": ["kind"]
+          "required": [
+            "kind"
+          ]
         }
       ]
     },
     "Link": {
       "type": "object",
       "allOf": [
-        { "$ref": "#/$defs/Resource" },
+        {
+          "$ref": "#/$defs/Resource"
+        },
         {
           "properties": {
             "@type": {
@@ -741,7 +1011,9 @@
             },
             "kind": {
               "type": "string",
-              "enum": ["contact"],
+              "enum": [
+                "contact"
+              ],
               "description": "The kind of link resource"
             }
           }
@@ -751,7 +1023,9 @@
     "Media": {
       "type": "object",
       "allOf": [
-        { "$ref": "#/$defs/Resource" },
+        {
+          "$ref": "#/$defs/Resource"
+        },
         {
           "properties": {
             "@type": {
@@ -760,11 +1034,17 @@
             },
             "kind": {
               "type": "string",
-              "enum": ["photo", "sound", "logo"],
+              "enum": [
+                "photo",
+                "sound",
+                "logo"
+              ],
               "description": "The kind of media resource"
             }
           },
-          "required": ["kind"]
+          "required": [
+            "kind"
+          ]
         }
       ]
     },
@@ -777,13 +1057,21 @@
         },
         "kind": {
           "type": "string",
-          "enum": ["birth", "death", "wedding"],
+          "enum": [
+            "birth",
+            "death",
+            "wedding"
+          ],
           "description": "The kind of anniversary"
         },
         "date": {
           "oneOf": [
-            { "$ref": "#/$defs/PartialDate" },
-            { "$ref": "#/$defs/Timestamp" }
+            {
+              "$ref": "#/$defs/PartialDate"
+            },
+            {
+              "$ref": "#/$defs/Timestamp"
+            }
           ],
           "description": "The date of the anniversary"
         },
@@ -792,7 +1080,10 @@
           "description": "An address associated with this anniversary"
         }
       },
-      "required": ["kind", "date"],
+      "required": [
+        "kind",
+        "date"
+      ],
       "additionalProperties": false
     },
     "PartialDate": {
@@ -837,7 +1128,9 @@
           "description": "The point in time in UTC time"
         }
       },
-      "required": ["utc"],
+      "required": [
+        "utc"
+      ],
       "additionalProperties": false
     },
     "Note": {
@@ -860,7 +1153,9 @@
           "description": "The author of this note"
         }
       },
-      "required": ["note"],
+      "required": [
+        "note"
+      ],
       "additionalProperties": false
     },
     "Author": {
@@ -881,8 +1176,16 @@
         }
       },
       "anyOf": [
-        { "required": ["name"] },
-        { "required": ["uri"] }
+        {
+          "required": [
+            "name"
+          ]
+        },
+        {
+          "required": [
+            "uri"
+          ]
+        }
       ],
       "additionalProperties": false
     },
@@ -895,7 +1198,11 @@
         },
         "kind": {
           "type": "string",
-          "enum": ["expertise", "hobby", "interest"],
+          "enum": [
+            "expertise",
+            "hobby",
+            "interest"
+          ],
           "description": "The kind of personal information"
         },
         "value": {
@@ -904,7 +1211,11 @@
         },
         "level": {
           "type": "string",
-          "enum": ["high", "medium", "low"],
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ],
           "description": "The level of expertise or engagement in hobby or interest"
         },
         "listAs": {
@@ -912,9 +1223,14 @@
           "minimum": 1,
           "description": "The position of the personal information in the list"
         },
-        "label": { "$ref": "#/$defs/Label" }
+        "label": {
+          "$ref": "#/$defs/Label"
+        }
       },
-      "required": ["kind", "value"],
+      "required": [
+        "kind",
+        "value"
+      ],
       "additionalProperties": false
     },
     "Relation": {
@@ -927,26 +1243,86 @@
         "relation": {
           "type": "object",
           "properties": {
-            "acquaintance": { "type": "boolean", "const": true },
-            "agent": { "type": "boolean", "const": true },
-            "child": { "type": "boolean", "const": true },
-            "co-resident": { "type": "boolean", "const": true },
-            "co-worker": { "type": "boolean", "const": true },
-            "colleague": { "type": "boolean", "const": true },
-            "contact": { "type": "boolean", "const": true },
-            "crush": { "type": "boolean", "const": true },
-            "date": { "type": "boolean", "const": true },
-            "emergency": { "type": "boolean", "const": true },
-            "friend": { "type": "boolean", "const": true },
-            "kin": { "type": "boolean", "const": true },
-            "me": { "type": "boolean", "const": true },
-            "met": { "type": "boolean", "const": true },
-            "muse": { "type": "boolean", "const": true },
-            "neighbor": { "type": "boolean", "const": true },
-            "parent": { "type": "boolean", "const": true },
-            "sibling": { "type": "boolean", "const": true },
-            "spouse": { "type": "boolean", "const": true },
-            "sweetheart": { "type": "boolean", "const": true }
+            "acquaintance": {
+              "type": "boolean",
+              "const": true
+            },
+            "agent": {
+              "type": "boolean",
+              "const": true
+            },
+            "child": {
+              "type": "boolean",
+              "const": true
+            },
+            "co-resident": {
+              "type": "boolean",
+              "const": true
+            },
+            "co-worker": {
+              "type": "boolean",
+              "const": true
+            },
+            "colleague": {
+              "type": "boolean",
+              "const": true
+            },
+            "contact": {
+              "type": "boolean",
+              "const": true
+            },
+            "crush": {
+              "type": "boolean",
+              "const": true
+            },
+            "date": {
+              "type": "boolean",
+              "const": true
+            },
+            "emergency": {
+              "type": "boolean",
+              "const": true
+            },
+            "friend": {
+              "type": "boolean",
+              "const": true
+            },
+            "kin": {
+              "type": "boolean",
+              "const": true
+            },
+            "me": {
+              "type": "boolean",
+              "const": true
+            },
+            "met": {
+              "type": "boolean",
+              "const": true
+            },
+            "muse": {
+              "type": "boolean",
+              "const": true
+            },
+            "neighbor": {
+              "type": "boolean",
+              "const": true
+            },
+            "parent": {
+              "type": "boolean",
+              "const": true
+            },
+            "sibling": {
+              "type": "boolean",
+              "const": true
+            },
+            "spouse": {
+              "type": "boolean",
+              "const": true
+            },
+            "sweetheart": {
+              "type": "boolean",
+              "const": true
+            }
           },
           "additionalProperties": false,
           "description": "The relationship of the related Card to the Card"
@@ -970,11 +1346,19 @@
           "type": "string",
           "description": "The media type of the resource"
         },
-        "contexts": { "$ref": "#/$defs/Contexts" },
-        "pref": { "$ref": "#/$defs/Pref" },
-        "label": { "$ref": "#/$defs/Label" }
+        "contexts": {
+          "$ref": "#/$defs/Contexts"
+        },
+        "pref": {
+          "$ref": "#/$defs/Pref"
+        },
+        "label": {
+          "$ref": "#/$defs/Label"
+        }
       },
-      "required": ["uri"],
+      "required": [
+        "uri"
+      ],
       "additionalProperties": false
     },
     "PatchObject": {
@@ -1004,8 +1388,14 @@
     "Contexts": {
       "type": "object",
       "properties": {
-        "private": { "type": "boolean", "const": true },
-        "work": { "type": "boolean", "const": true }
+        "private": {
+          "type": "boolean",
+          "const": true
+        },
+        "work": {
+          "type": "boolean",
+          "const": true
+        }
       },
       "additionalProperties": false,
       "description": "The contexts in which to use the contact information"
@@ -1023,7 +1413,10 @@
     "StringBooleanMap": {
       "type": "object",
       "patternProperties": {
-        ".*": { "type": "boolean", "const": true }
+        ".*": {
+          "type": "boolean",
+          "const": true
+        }
       },
       "additionalProperties": false,
       "description": "A map with string keys and boolean true values"
