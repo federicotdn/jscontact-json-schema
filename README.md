@@ -1,6 +1,6 @@
 # jscontact-json-schema
 
-JSON Schema for JSContact (RFC 9554). Schema file is at [`jscontact-schema.json`](jscontact-schema.json).
+JSON Schema for JSContact ([RFC 9554](https://datatracker.ietf.org/doc/html/rfc9553)). Schema file is at [`jscontact-schema.json`](jscontact-schema.json).
 
 **Note:** Still under development, use at your own risk!
 
