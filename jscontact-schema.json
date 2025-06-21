@@ -1,0 +1,1040 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/jscontact-schema.json",
+  "title": "JSContact Schema",
+  "description": "JSON Schema for validating JSContact data (RFC 9553)",
+  "type": "object",
+  "oneOf": [
+    { "$ref": "#/$defs/Card" },
+    {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Card" }
+    }
+  ],
+  "$defs": {
+    "Card": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "Card"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^1\\.0$",
+          "description": "The JSContact version of this Card"
+        },
+        "uid": {
+          "type": "string",
+          "minLength": 1,
+          "description": "An identifier that associates the object as the same across different systems"
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["individual", "group", "org", "location", "device", "application"],
+          "default": "individual",
+          "description": "The kind of the entity the Card represents"
+        },
+        "created": {
+          "$ref": "#/$defs/UTCDateTime",
+          "description": "The date and time when the Card was created"
+        },
+        "updated": {
+          "$ref": "#/$defs/UTCDateTime",
+          "description": "The date and time when the data in the Card was last modified"
+        },
+        "language": {
+          "type": "string",
+          "description": "The language tag that best describes the language used for text in the Card"
+        },
+        "prodId": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The identifier for the product that created the Card"
+        },
+        "members": {
+          "$ref": "#/$defs/StringBooleanMap",
+          "description": "The set of Cards that are members of this group Card"
+        },
+        "relatedTo": {
+          "type": "object",
+          "patternProperties": {
+            ".*": { "$ref": "#/$defs/Relation" }
+          },
+          "additionalProperties": false,
+          "description": "The set of Card objects that relate to the Card"
+        },
+        "name": {
+          "$ref": "#/$defs/Name",
+          "description": "The name of the entity represented by the Card"
+        },
+        "nicknames": {
+          "$ref": "#/$defs/IdMap",
+          "properties": {
+            "patternProperties": {
+              ".*": { "$ref": "#/$defs/Nickname" }
+            }
+          },
+          "description": "The nicknames of the entity represented by the Card"
+        },
+        "organizations": {
+          "$ref": "#/$defs/IdMap",
+          "properties": {
+            "patternProperties": {
+              ".*": { "$ref": "#/$defs/Organization" }
+            }
+          },
+          "description": "The company or organization names and units associated with the Card"
+        },
+        "speakToAs": {
+          "$ref": "#/$defs/SpeakToAs",
+          "description": "Information that directs how to address, speak to, or refer to the entity"
+        },
+        "titles": {
+          "$ref": "#/$defs/IdMap",
+          "properties": {
+            "patternProperties": {
+              ".*": { "$ref": "#/$defs/Title" }
+            }
+          },
+          "description": "The job titles or functional positions of the entity represented by the Card"
+        },
+        "emails": {
+          "$ref": "#/$defs/IdMap",
+          "properties": {
+            "patternProperties": {
+              ".*": { "$ref": "#/$defs/EmailAddress" }
+            }
+          },
+          "description": "The email addresses to contact the entity represented by the Card"
+        },
+        "onlineServices": {
+          "$ref": "#/$defs/IdMap",
+          "properties": {
+            "patternProperties": {
+              ".*": { "$ref": "#/$defs/OnlineService" }
+            }
+          },
+          "description": "The online services that are associated with the entity represented by the Card"
+        },
+        "phones": {
+          "$ref": "#/$defs/IdMap",
+          "properties": {
+            "patternProperties": {
+              ".*": { "$ref": "#/$defs/Phone" }
+            }
+          },
+          "description": "The phone numbers by which to contact the entity represented by the Card"
+        },
+        "preferredLanguages": {
+          "$ref": "#/$defs/IdMap",
+          "properties": {
+            "patternProperties": {
+              ".*": { "$ref": "#/$defs/LanguagePref" }
+            }
+          },
+          "description": "The preferred languages for contacting the entity associated with the Card"
+        },
+        "calendars": {
+          "$ref": "#/$defs/IdMap",
+          "properties": {
+            "patternProperties": {
+              ".*": { "$ref": "#/$defs/Calendar" }
+            }
+          },
+          "description": "The calendaring resources of the entity represented by the Card"
+        },
+        "schedulingAddresses": {
+          "$ref": "#/$defs/IdMap",
+          "properties": {
+            "patternProperties": {
+              ".*": { "$ref": "#/$defs/SchedulingAddress" }
+            }
+          },
+          "description": "The scheduling addresses by which the entity may receive calendar scheduling invitations"
+        },
+        "addresses": {
+          "$ref": "#/$defs/IdMap",
+          "properties": {
+            "patternProperties": {
+              ".*": { "$ref": "#/$defs/Address" }
+            }
+          },
+          "description": "The addresses of the entity represented by the Card"
+        },
+        "cryptoKeys": {
+          "$ref": "#/$defs/IdMap",
+          "properties": {
+            "patternProperties": {
+              ".*": { "$ref": "#/$defs/CryptoKey" }
+            }
+          },
+          "description": "The cryptographic resources such as public keys and certificates"
+        },
+        "directories": {
+          "$ref": "#/$defs/IdMap",
+          "properties": {
+            "patternProperties": {
+              ".*": { "$ref": "#/$defs/Directory" }
+            }
+          },
+          "description": "The directories containing information about the entity represented by the Card"
+        },
+        "links": {
+          "$ref": "#/$defs/IdMap",
+          "properties": {
+            "patternProperties": {
+              ".*": { "$ref": "#/$defs/Link" }
+            }
+          },
+          "description": "The links to resources that do not fit any of the other use-case-specific resource properties"
+        },
+        "media": {
+          "$ref": "#/$defs/IdMap",
+          "properties": {
+            "patternProperties": {
+              ".*": { "$ref": "#/$defs/Media" }
+            }
+          },
+          "description": "The media resources such as photographs, avatars, or sounds"
+        },
+        "localizations": {
+          "type": "object",
+          "patternProperties": {
+            ".*": { "$ref": "#/$defs/PatchObject" }
+          },
+          "additionalProperties": false,
+          "description": "Property values localized to languages other than the main language of the Card"
+        },
+        "anniversaries": {
+          "$ref": "#/$defs/IdMap",
+          "properties": {
+            "patternProperties": {
+              ".*": { "$ref": "#/$defs/Anniversary" }
+            }
+          },
+          "description": "The memorable dates and events for the entity represented by the Card"
+        },
+        "keywords": {
+          "$ref": "#/$defs/StringBooleanMap",
+          "description": "The set of free-text keywords, also known as tags"
+        },
+        "notes": {
+          "$ref": "#/$defs/IdMap",
+          "properties": {
+            "patternProperties": {
+              ".*": { "$ref": "#/$defs/Note" }
+            }
+          },
+          "description": "The free-text notes that are associated with the Card"
+        },
+        "personalInfo": {
+          "$ref": "#/$defs/IdMap",
+          "properties": {
+            "patternProperties": {
+              ".*": { "$ref": "#/$defs/PersonalInfo" }
+            }
+          },
+          "description": "The personal information of the entity represented by the Card"
+        }
+      },
+      "required": ["@type", "version", "uid"],
+      "patternProperties": {
+        "^[a-zA-Z0-9_-]+\\.[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)*:": true
+      },
+      "additionalProperties": false
+    },
+    "Name": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "Name"
+        },
+        "components": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/NameComponent" },
+          "description": "The components making up this name"
+        },
+        "isOrdered": {
+          "type": "boolean",
+          "default": false,
+          "description": "Indicates if the name components are ordered"
+        },
+        "defaultSeparator": {
+          "type": "string",
+          "description": "The default separator to insert between name component values"
+        },
+        "full": {
+          "type": "string",
+          "description": "The full name representation"
+        },
+        "sortAs": {
+          "type": "object",
+          "patternProperties": {
+            "^(title|given|given2|surname|surname2|credential|generation)$": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "description": "The value to lexicographically sort the name"
+        },
+        "phoneticScript": {
+          "type": "string",
+          "description": "The script used in the value of the NameComponent phonetic property"
+        },
+        "phoneticSystem": {
+          "type": "string",
+          "enum": ["ipa", "jyut", "piny"],
+          "description": "The phonetic system used in the NameComponent phonetic property"
+        }
+      },
+      "anyOf": [
+        { "required": ["components"] },
+        { "required": ["full"] }
+      ],
+      "additionalProperties": false
+    },
+    "NameComponent": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "NameComponent"
+        },
+        "value": {
+          "type": "string",
+          "description": "The value of the name component"
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["title", "given", "given2", "surname", "surname2", "credential", "generation", "separator"],
+          "description": "The kind of the name component"
+        },
+        "phonetic": {
+          "type": "string",
+          "description": "The pronunciation of the name component"
+        }
+      },
+      "required": ["value", "kind"],
+      "additionalProperties": false
+    },
+    "Nickname": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "Nickname"
+        },
+        "name": {
+          "type": "string",
+          "description": "The nickname"
+        },
+        "contexts": { "$ref": "#/$defs/Contexts" },
+        "pref": { "$ref": "#/$defs/Pref" }
+      },
+      "required": ["name"],
+      "additionalProperties": false
+    },
+    "Organization": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "Organization"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the organization"
+        },
+        "units": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/OrgUnit" },
+          "minItems": 1,
+          "description": "A list of organizational units, ordered as descending by hierarchy"
+        },
+        "sortAs": {
+          "type": "string",
+          "description": "The value to lexicographically sort the organization"
+        },
+        "contexts": { "$ref": "#/$defs/Contexts" }
+      },
+      "anyOf": [
+        { "required": ["name"] },
+        { "required": ["units"] }
+      ],
+      "additionalProperties": false
+    },
+    "OrgUnit": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "OrgUnit"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the organizational unit"
+        },
+        "sortAs": {
+          "type": "string",
+          "description": "The value to lexicographically sort the organizational unit"
+        }
+      },
+      "required": ["name"],
+      "additionalProperties": false
+    },
+    "SpeakToAs": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "SpeakToAs"
+        },
+        "grammaticalGender": {
+          "type": "string",
+          "enum": ["animate", "common", "feminine", "inanimate", "masculine", "neuter"],
+          "description": "The grammatical gender to use in salutations and other grammatical constructs"
+        },
+        "pronouns": {
+          "$ref": "#/$defs/IdMap",
+          "properties": {
+            "patternProperties": {
+              ".*": { "$ref": "#/$defs/Pronouns" }
+            }
+          },
+          "description": "The pronouns that the contact chooses to use for themselves"
+        }
+      },
+      "anyOf": [
+        { "required": ["grammaticalGender"] },
+        { "required": ["pronouns"] }
+      ],
+      "additionalProperties": false
+    },
+    "Pronouns": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "Pronouns"
+        },
+        "pronouns": {
+          "type": "string",
+          "description": "The pronouns"
+        },
+        "contexts": { "$ref": "#/$defs/Contexts" },
+        "pref": { "$ref": "#/$defs/Pref" }
+      },
+      "required": ["pronouns"],
+      "additionalProperties": false
+    },
+    "Title": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "Title"
+        },
+        "name": {
+          "type": "string",
+          "description": "The title or role name of the entity represented by the Card"
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["title", "role"],
+          "default": "title",
+          "description": "The organizational or situational kind of the title"
+        },
+        "organizationId": {
+          "$ref": "#/$defs/Id",
+          "description": "The identifier of the organization in which this title is held"
+        }
+      },
+      "required": ["name"],
+      "additionalProperties": false
+    },
+    "EmailAddress": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "EmailAddress"
+        },
+        "address": {
+          "type": "string",
+          "format": "email",
+          "description": "The email address"
+        },
+        "contexts": { "$ref": "#/$defs/Contexts" },
+        "pref": { "$ref": "#/$defs/Pref" },
+        "label": { "$ref": "#/$defs/Label" }
+      },
+      "required": ["address"],
+      "additionalProperties": false
+    },
+    "OnlineService": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "OnlineService"
+        },
+        "service": {
+          "type": "string",
+          "description": "The name of the online service or protocol"
+        },
+        "uri": {
+          "type": "string",
+          "format": "uri",
+          "description": "The identifier for the entity represented by the Card at the online service"
+        },
+        "user": {
+          "type": "string",
+          "description": "The name the entity represented by the Card at the online service"
+        },
+        "contexts": { "$ref": "#/$defs/Contexts" },
+        "pref": { "$ref": "#/$defs/Pref" },
+        "label": { "$ref": "#/$defs/Label" }
+      },
+      "anyOf": [
+        { "required": ["uri"] },
+        { "required": ["user"] }
+      ],
+      "additionalProperties": false
+    },
+    "Phone": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "Phone"
+        },
+        "number": {
+          "type": "string",
+          "description": "The phone number as either a URI or free text"
+        },
+        "features": {
+          "type": "object",
+          "properties": {
+            "mobile": { "type": "boolean", "const": true },
+            "voice": { "type": "boolean", "const": true },
+            "text": { "type": "boolean", "const": true },
+            "video": { "type": "boolean", "const": true },
+            "main-number": { "type": "boolean", "const": true },
+            "textphone": { "type": "boolean", "const": true },
+            "fax": { "type": "boolean", "const": true },
+            "pager": { "type": "boolean", "const": true }
+          },
+          "additionalProperties": false,
+          "description": "The set of contact features that the phone number may be used for"
+        },
+        "contexts": { "$ref": "#/$defs/Contexts" },
+        "pref": { "$ref": "#/$defs/Pref" },
+        "label": { "$ref": "#/$defs/Label" }
+      },
+      "required": ["number"],
+      "additionalProperties": false
+    },
+    "LanguagePref": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "LanguagePref"
+        },
+        "language": {
+          "type": "string",
+          "description": "The preferred language as a language tag"
+        },
+        "contexts": { "$ref": "#/$defs/Contexts" },
+        "pref": { "$ref": "#/$defs/Pref" }
+      },
+      "required": ["language"],
+      "additionalProperties": false
+    },
+    "Calendar": {
+      "type": "object",
+      "allOf": [
+        { "$ref": "#/$defs/Resource" },
+        {
+          "properties": {
+            "@type": {
+              "type": "string",
+              "const": "Calendar"
+            },
+            "kind": {
+              "type": "string",
+              "enum": ["calendar", "freeBusy"],
+              "description": "The kind of calendar resource"
+            }
+          },
+          "required": ["kind"]
+        }
+      ]
+    },
+    "SchedulingAddress": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "SchedulingAddress"
+        },
+        "uri": {
+          "type": "string",
+          "format": "uri",
+          "description": "The address to use for calendar scheduling with the contact"
+        },
+        "contexts": { "$ref": "#/$defs/Contexts" },
+        "pref": { "$ref": "#/$defs/Pref" },
+        "label": { "$ref": "#/$defs/Label" }
+      },
+      "required": ["uri"],
+      "additionalProperties": false
+    },
+    "Address": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "Address"
+        },
+        "components": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/AddressComponent" },
+          "description": "The components that make up the address"
+        },
+        "isOrdered": {
+          "type": "boolean",
+          "default": false,
+          "description": "Indicates if the address components are ordered"
+        },
+        "countryCode": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$",
+          "description": "The Alpha-2 country code"
+        },
+        "coordinates": {
+          "type": "string",
+          "pattern": "^geo:",
+          "description": "A geo: URI for the address"
+        },
+        "timeZone": {
+          "type": "string",
+          "description": "The time zone in which the address is located"
+        },
+        "contexts": {
+          "type": "object",
+          "properties": {
+            "private": { "type": "boolean", "const": true },
+            "work": { "type": "boolean", "const": true },
+            "billing": { "type": "boolean", "const": true },
+            "delivery": { "type": "boolean", "const": true }
+          },
+          "additionalProperties": false,
+          "description": "The contexts in which to use this address"
+        },
+        "full": {
+          "type": "string",
+          "description": "The full address, including street, region, or country"
+        },
+        "defaultSeparator": {
+          "type": "string",
+          "description": "The default separator to insert between address component values"
+        },
+        "pref": { "$ref": "#/$defs/Pref" },
+        "phoneticScript": {
+          "type": "string",
+          "description": "The script used in the value of the AddressComponent phonetic property"
+        },
+        "phoneticSystem": {
+          "type": "string",
+          "enum": ["ipa", "jyut", "piny"],
+          "description": "The phonetic system used in the AddressComponent phonetic property"
+        }
+      },
+      "anyOf": [
+        { "required": ["components"] },
+        { "required": ["coordinates"] },
+        { "required": ["countryCode"] },
+        { "required": ["full"] },
+        { "required": ["timeZone"] }
+      ],
+      "additionalProperties": false
+    },
+    "AddressComponent": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "AddressComponent"
+        },
+        "value": {
+          "type": "string",
+          "description": "The value of the address component"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "room", "apartment", "floor", "building", "number", "name", "block",
+            "subdistrict", "district", "locality", "region", "postcode", "country",
+            "direction", "landmark", "postOfficeBox", "separator"
+          ],
+          "description": "The kind of the address component"
+        },
+        "phonetic": {
+          "type": "string",
+          "description": "The pronunciation of the address component"
+        }
+      },
+      "required": ["value", "kind"],
+      "additionalProperties": false
+    },
+    "CryptoKey": {
+      "type": "object",
+      "allOf": [
+        { "$ref": "#/$defs/Resource" },
+        {
+          "properties": {
+            "@type": {
+              "type": "string",
+              "const": "CryptoKey"
+            }
+          }
+        }
+      ]
+    },
+    "Directory": {
+      "type": "object",
+      "allOf": [
+        { "$ref": "#/$defs/Resource" },
+        {
+          "properties": {
+            "@type": {
+              "type": "string",
+              "const": "Directory"
+            },
+            "kind": {
+              "type": "string",
+              "enum": ["directory", "entry"],
+              "description": "The kind of directory resource"
+            },
+            "listAs": {
+              "$ref": "#/$defs/UnsignedInt",
+              "minimum": 1,
+              "description": "The position of the directory resource in the list"
+            }
+          },
+          "required": ["kind"]
+        }
+      ]
+    },
+    "Link": {
+      "type": "object",
+      "allOf": [
+        { "$ref": "#/$defs/Resource" },
+        {
+          "properties": {
+            "@type": {
+              "type": "string",
+              "const": "Link"
+            },
+            "kind": {
+              "type": "string",
+              "enum": ["contact"],
+              "description": "The kind of link resource"
+            }
+          }
+        }
+      ]
+    },
+    "Media": {
+      "type": "object",
+      "allOf": [
+        { "$ref": "#/$defs/Resource" },
+        {
+          "properties": {
+            "@type": {
+              "type": "string",
+              "const": "Media"
+            },
+            "kind": {
+              "type": "string",
+              "enum": ["photo", "sound", "logo"],
+              "description": "The kind of media resource"
+            }
+          },
+          "required": ["kind"]
+        }
+      ]
+    },
+    "Anniversary": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "Anniversary"
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["birth", "death", "wedding"],
+          "description": "The kind of anniversary"
+        },
+        "date": {
+          "oneOf": [
+            { "$ref": "#/$defs/PartialDate" },
+            { "$ref": "#/$defs/Timestamp" }
+          ],
+          "description": "The date of the anniversary"
+        },
+        "place": {
+          "$ref": "#/$defs/Address",
+          "description": "An address associated with this anniversary"
+        }
+      },
+      "required": ["kind", "date"],
+      "additionalProperties": false
+    },
+    "PartialDate": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "PartialDate"
+        },
+        "year": {
+          "$ref": "#/$defs/UnsignedInt",
+          "description": "The calendar year"
+        },
+        "month": {
+          "$ref": "#/$defs/UnsignedInt",
+          "minimum": 1,
+          "maximum": 12,
+          "description": "The calendar month"
+        },
+        "day": {
+          "$ref": "#/$defs/UnsignedInt",
+          "minimum": 1,
+          "maximum": 31,
+          "description": "The calendar month day"
+        },
+        "calendarScale": {
+          "type": "string",
+          "description": "The calendar system in which this date occurs"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Timestamp": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "Timestamp"
+        },
+        "utc": {
+          "$ref": "#/$defs/UTCDateTime",
+          "description": "The point in time in UTC time"
+        }
+      },
+      "required": ["utc"],
+      "additionalProperties": false
+    },
+    "Note": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "Note"
+        },
+        "note": {
+          "type": "string",
+          "description": "The free-text value of this note"
+        },
+        "created": {
+          "$ref": "#/$defs/UTCDateTime",
+          "description": "The date and time when this note was created"
+        },
+        "author": {
+          "$ref": "#/$defs/Author",
+          "description": "The author of this note"
+        }
+      },
+      "required": ["note"],
+      "additionalProperties": false
+    },
+    "Author": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "Author"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of this author"
+        },
+        "uri": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URI value that identifies the author"
+        }
+      },
+      "anyOf": [
+        { "required": ["name"] },
+        { "required": ["uri"] }
+      ],
+      "additionalProperties": false
+    },
+    "PersonalInfo": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "PersonalInfo"
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["expertise", "hobby", "interest"],
+          "description": "The kind of personal information"
+        },
+        "value": {
+          "type": "string",
+          "description": "The actual information"
+        },
+        "level": {
+          "type": "string",
+          "enum": ["high", "medium", "low"],
+          "description": "The level of expertise or engagement in hobby or interest"
+        },
+        "listAs": {
+          "$ref": "#/$defs/UnsignedInt",
+          "minimum": 1,
+          "description": "The position of the personal information in the list"
+        },
+        "label": { "$ref": "#/$defs/Label" }
+      },
+      "required": ["kind", "value"],
+      "additionalProperties": false
+    },
+    "Relation": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "Relation"
+        },
+        "relation": {
+          "type": "object",
+          "properties": {
+            "acquaintance": { "type": "boolean", "const": true },
+            "agent": { "type": "boolean", "const": true },
+            "child": { "type": "boolean", "const": true },
+            "co-resident": { "type": "boolean", "const": true },
+            "co-worker": { "type": "boolean", "const": true },
+            "colleague": { "type": "boolean", "const": true },
+            "contact": { "type": "boolean", "const": true },
+            "crush": { "type": "boolean", "const": true },
+            "date": { "type": "boolean", "const": true },
+            "emergency": { "type": "boolean", "const": true },
+            "friend": { "type": "boolean", "const": true },
+            "kin": { "type": "boolean", "const": true },
+            "me": { "type": "boolean", "const": true },
+            "met": { "type": "boolean", "const": true },
+            "muse": { "type": "boolean", "const": true },
+            "neighbor": { "type": "boolean", "const": true },
+            "parent": { "type": "boolean", "const": true },
+            "sibling": { "type": "boolean", "const": true },
+            "spouse": { "type": "boolean", "const": true },
+            "sweetheart": { "type": "boolean", "const": true }
+          },
+          "additionalProperties": false,
+          "description": "The relationship of the related Card to the Card"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Resource": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "description": "The kind of the resource"
+        },
+        "uri": {
+          "type": "string",
+          "format": "uri",
+          "description": "The resource value"
+        },
+        "mediaType": {
+          "type": "string",
+          "description": "The media type of the resource"
+        },
+        "contexts": { "$ref": "#/$defs/Contexts" },
+        "pref": { "$ref": "#/$defs/Pref" },
+        "label": { "$ref": "#/$defs/Label" }
+      },
+      "required": ["uri"],
+      "additionalProperties": false
+    },
+    "PatchObject": {
+      "type": "object",
+      "patternProperties": {
+        "^[^/]": true
+      },
+      "additionalProperties": false,
+      "description": "An unordered set of patches on a JSON object"
+    },
+    "UTCDateTime": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?Z$",
+      "description": "A string in date-time format with UTC timezone"
+    },
+    "Id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{1,255}$",
+      "description": "An identifier string using URL and Filename Safe base64url alphabet"
+    },
+    "UnsignedInt": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991,
+      "description": "An unsigned integer in the safe range for JSON numbers"
+    },
+    "Contexts": {
+      "type": "object",
+      "properties": {
+        "private": { "type": "boolean", "const": true },
+        "work": { "type": "boolean", "const": true }
+      },
+      "additionalProperties": false,
+      "description": "The contexts in which to use the contact information"
+    },
+    "Pref": {
+      "$ref": "#/$defs/UnsignedInt",
+      "minimum": 1,
+      "maximum": 100,
+      "description": "A preference order for contact information"
+    },
+    "Label": {
+      "type": "string",
+      "description": "A custom label for the value"
+    },
+    "StringBooleanMap": {
+      "type": "object",
+      "patternProperties": {
+        ".*": { "type": "boolean", "const": true }
+      },
+      "additionalProperties": false,
+      "description": "A map with string keys and boolean true values"
+    },
+    "IdMap": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-Za-z0-9_-]{1,255}$": true
+      },
+      "additionalProperties": false,
+      "description": "A map with Id keys"
+    }
+  }
+}

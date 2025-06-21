@@ -1,0 +1,8 @@
+[project]
+name = "jscontact-json-schema"
+version = "0.1.0"
+description = "JSON Schema definition for JSContact (RFC 9553)"
+requires-python = ">=3.11"
+dependencies = [
+    "jsonschema>=4.24.0",
+]
